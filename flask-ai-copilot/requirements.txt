@@ -5,11 +5,5 @@ openai>=1.40.0
 google-generativeai==0.3.2
 groq>=0.4.1
 requests>=2.31.0
-pathlib>=1.0.1
-zipfile>=1.0.0
-json>=2.0.9
-re>=2.2.1
-os>=1.0.0
-sys>=1.0.0
-time>=1.0.0
+gunicorn>=21.2.0
 
