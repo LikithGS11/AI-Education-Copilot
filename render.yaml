@@ -1,0 +1,35 @@
+services:
+  # Flask Backend Service
+  - type: web
+    name: ai-copilot-backend
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: "cd flask-ai-copilot && pip install -r requirements.txt"
+    startCommand: "cd flask-ai-copilot && python app.py"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+
+  # React Frontend Service
+  - type: web
+    name: ai-copilot-frontend
+    env: static
+    region: singapore
+    plan: free
+    buildCommand: "cd react-ai-copilot && npm install && npm run build"
+    staticPublishPath: ./react-ai-copilot/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
